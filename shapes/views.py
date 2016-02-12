@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Python
 import urllib
 import urlparse
@@ -194,7 +195,7 @@ def home(request):
         
         friends = face.query("me", connection_type="friends", fields='name,installed')
        
-        print friends
+        #print friends
        
         
         #print "Amigos"
@@ -218,7 +219,7 @@ def home(request):
         print "if resultado igual a error"
         print person_result
         print "2323232323232323"
-        print u
+        #print u
 
         # if not r:
         #     print "creando nodo"
@@ -756,7 +757,7 @@ def get_liders(request):
         print jd
         print j   
     else:
-        print "No lider board"
+        print "No leader board"
         
         
     return HttpResponse(j, content_type='application/json')

@@ -14,12 +14,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 #Facebook configuration
 
-#FACEBOOK_APP_ID = os.environ['APP_ID']
-#FACEBOOK_APP_SECRET = os.environ['APP_SECRET']
-#FACEBOOK_REDIRECT_URL = ''
-#AUTHENTICATION_BACKENDS = (
-#    'shapes.backends.FacebookBackend',
-#)
+FACEBOOK_APP_ID = os.environ['APP_ID']
+FACEBOOK_APP_SECRET = os.environ['APP_SECRET']
+FACEBOOK_REDIRECT_URL = ''
+AUTHENTICATION_BACKENDS = (
+    'shapes.backends.FacebookBackend',
+)
 
 
 # Quick-start development settings - unsuitable for production
