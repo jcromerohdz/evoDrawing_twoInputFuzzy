@@ -214,7 +214,7 @@ def home(request):
         na = fn
         n = Nodo()
         p = Person()
-        print na
+        #print na
         person_result = p.get_person(na)
         print "if resultado igual a error"
         print person_result
@@ -227,7 +227,7 @@ def home(request):
         #     print "creo nodo"
         #     print n
 
-        print "+++++++++++++++++"
+        #print "+++++++++++++++++"
         #print na, r[0][0]["name"]
         #n = Person()
         # participation = p.get_participation(u)
@@ -394,7 +394,7 @@ def facebook_login(request):
     user = authenticate(token=access_token)
     
     if user:
-        print user
+        #print user
         u = str(user)
         #r = redis.StrictRedis(host='localhost', port=6379, db=0)
         r = redis
@@ -449,7 +449,7 @@ def add_collection(request, username):
         d = json_data["description"]
         v = json_data["option"]
 
-        print n
+        #print n
 
         c = Collection(name=n,
                        description=d,
@@ -489,8 +489,8 @@ def add_collection(request, username):
 
         #Relacionar coleccion con el usuario
         firstName = request.user.first_name
-        lastName = request.user.last_name
-        name = firstName +" "+lastName
+        #lastName = request.user.last_name
+        name = firstName
         person = Person()
         person_result = person.get_person(name)
         collection = GraphCollection()
@@ -544,7 +544,7 @@ def get_collection(request, username, collection=None):
         url = 'https://graph.facebook.com/%s?fields=name' % username
         owner = face_owner.query("me", fields='name')
         #owner = json.load(urllib.urlopen(url))
-        print username, owner
+        #print username, owner
 
         #r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
         r = redis
@@ -723,14 +723,15 @@ def get_user_level(request, username):
 
 
 def get_liders(request):
-    print "T_T"
+    #print "T_T"
     
     jd = {"leaders":[]}
     p = Person()
+
+    #Ask if there leader board
     lider_board = p.get_lider_board()
     #ldier_board = score[0][0]
 
-    print lider_board
    
     if lider_board:
         #   c = 0
@@ -758,6 +759,8 @@ def get_liders(request):
         print j   
     else:
         print "No leader board"
+        m = {"leader_board":"No leader board"}
+        j =json.dumps(m)
         
         
     return HttpResponse(j, content_type='application/json')
