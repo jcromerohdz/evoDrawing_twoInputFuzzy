@@ -21,10 +21,6 @@ graphenedb_url = os.environ.get("GRAPHENEDB_URL", "http://localhost:7474/")
 service_root = neo4j.ServiceRoot(URI(graphenedb_url).resolve("/"))
 graph_db=service_root.graph_db
 
-#local  ne4j
-#graph_db = neo4j.GraphDatabaseService()
-
-
 
 class Nodo(object):
     def __init__(self):
