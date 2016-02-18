@@ -66,17 +66,17 @@
         <div class="col-md-4">
         <button class="btn btn-success" id="get_more" > Get More</button>
           
-            {% if user.is_authenticated %}
-                <h2>Welcome! {{ user.first_name }}</h2>
+            <!-- {% if user.is_authenticated %}
+                <h2>Welcome! {{ user.first_name }}</h2> -->
                 <!-- <p> <a href="/logout">Log out</a> </p> -->
-                <input id="username" type="hidden" value="{{user.username}}"/>
+                <!-- <input id="username" type="hidden" value="{{user.username}}"/>
                 <p>Please rate each drawing on the canvas, but wait until the drawing animation is complete. After each rating you will get another drawing. Collect your favorites!.</p>
             {% else %}
                 <h2>Help us!</h2>
                 <p>Please to participate <a href="facebook/get_login">log in </a> with your facebook account.</p>
                
                 <input id="username" type="hidden" value="anonymous"/>
-            {% endif %}
+            {% endif %} -->
             <hr/>
 
           
@@ -238,10 +238,30 @@
             </div>
             </div>
 
-            
+                     
 
-                
-            
+        </div>
+        <div class="col-md-4">
+
+          {% if user.is_authenticated %}
+              <h2>{{ user.first_name }}</h2>
+              <!-- <p> <a href="/logout">Log out</a> </p> -->
+              <input id="username" type="hidden" value="{{user.username}}"/>
+              <ul>
+                <li>Please rate each drawing on the canvas, </li>
+               <li> but wait until the drawing animation is complete.</li> 
+                <li>After each rating you will get another drawing.</li> 
+               <li>Collect your favorites!</li> 
+
+               </ul>
+          {% else %}
+              <!-- <h2>Help us!</h2>
+              <p>Please to participate <a href="facebook/get_login">log in </a> with your facebook account.</p>
+              -->
+              <input id="username" type="hidden" value="anonymous"/>
+          {% endif %}
+          <hr/>
+          
 
         </div>
 
