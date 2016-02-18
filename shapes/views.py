@@ -722,7 +722,7 @@ def get_user_level(request, username):
     return HttpResponse(j, content_type='application/json')
 
 
-def get_liders(request):
+def get_leaders(request):
     #print "T_T"
     
     jd = {"leaders":[]}
