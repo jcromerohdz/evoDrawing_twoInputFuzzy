@@ -475,7 +475,7 @@ $(document).ready(function () {
 
              $.ajax(
                  {
-                     url: "/get_liders/",
+                     url: "/get_leader/",
                      type: "GET",
                      contentType: "application/json",
                      dataType: "json",
@@ -765,7 +765,7 @@ $(document).ready(function () {
                                         "href","/individual/"+sample.sample[slot_index].id.substr(15));
                                     element.nextElementSibling.childNodes[1].setAttribute(
                                             "target","_blank");
-                                    element.nextElementSibling.childNodes[1].textContent = "Click here to see who I am!";//"id:" + sample.sample[slot_index].id.substr(15) ;
+                                    element.nextElementSibling.childNodes[1].textContent = "Click here to see my DNA History!";//"id:" + sample.sample[slot_index].id.substr(15) ;
 
 
                                     var suma = 0;
@@ -846,7 +846,7 @@ $(document).ready(function () {
                                         "href","/individual/"+sample.sample[slot_index].id.substr(15));
                                     element.nextElementSibling.childNodes[1].setAttribute(
                                             "target","_blank");
-                                    element.nextElementSibling.childNodes[1].textContent = "Click here to see who I am!";//"id:" + sample.sample[slot_index].id.substr(15) ;
+                                    element.nextElementSibling.childNodes[1].textContent = "Click here to see my DNA History!";//"id:" + sample.sample[slot_index].id.substr(15) ;
 
 
                                     var suma = 0;
@@ -912,7 +912,7 @@ $(document).ready(function () {
 
                  $.ajax(
                      {
-                         url: "/get_liders/",
+                         url: "/get_leaders/",
                          type: "GET",
                          contentType: "application/json",
                          dataType: "json",
