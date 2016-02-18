@@ -18,8 +18,12 @@
 
 <!-- CSS
 ================================================== -->
-<link rel="stylesheet" href="https://s3.amazonaws.com/evospace/prototype/stylesheets/base.css">
-<link rel="stylesheet" href="https://s3.amazonaws.com/evospace/prototype/stylesheets/skeleton.css">
+
+<link href="/static/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/static/css/jumbotron.css" rel="stylesheet">
+
+<!-- <link rel="stylesheet" href="https://s3.amazonaws.com/evospace/prototype/stylesheets/base.css">
+ --><link rel="stylesheet" href="https://s3.amazonaws.com/evospace/prototype/stylesheets/skeleton.css">
 <link rel="stylesheet" href="https://s3.amazonaws.com/evospace/prototype/stylesheets/layout.css">
 <link rel="Stylesheet" href="https://s3.amazonaws.com/evospace/prototype/stylesheets/wHumanMsg.css" />
 <link rel="stylesheet" href="https://s3.amazonaws.com/evospace/prototype/stylesheets/prototype.css">
@@ -101,12 +105,12 @@ function AsImage()
                     var chrome = pjs.getChromosome();
                     chrome.length = 0;
                     Array.prototype.push.apply(chrome, individual.chromosome);
-		      pjs.setup();//Se resetea el canvas
+              pjs.setup();//Se resetea el canvas
                     pjs.draw();
                     bound = true;
 
 
-		      //AS IMAGE
+              //AS IMAGE
                     //var canvas = document.getElementById("slot");
                     //var img    = canvas.toDataURL("image/png");
                     //$('#asImage').append('<img src="'+img+'"/>')
@@ -132,7 +136,7 @@ function AsImage()
                 chrome.length = 0;
                 var mama = {{mama.chromosome|safe}};
                 Array.prototype.push.apply(chrome, mama);
-		  pjs.setup();//Se resetea el canvas
+          pjs.setup();//Se resetea el canvas
                 pjs.draw();
                 bound = true; }
             if(!bound) setTimeout(bindJavascript, 250);
@@ -186,36 +190,47 @@ function AsImage()
 <!-- Delete everything in this .container and get started on your own site! -->
 
 <div class="container">
+      <!-- Example row of columns -->
+     
+        <div class="col-md-4">
+
+
+<div class="container">
 
     <header>
-        <div class='sixteen columns'>
+        <div class="row">
+        <div class='col-md-6'>
 
-            <div class='six columns slideup'>
+            
                 {% if user.is_authenticated %}
-                    <p> <img src="http://graph.facebook.com/{{user.email}}/picture?type=small"/> {{ user.first_name }}.  </p>
+                    <p> <img src="http://graph.facebook.com/{{user.email}}/picture?type=square"/> {{ user.first_name }}.  </p>
                 {% else %}
                     <p>Welcome, new user. Please <a href="facebook/get_login"> log in </a>with your facebook account. </p>
                 {% endif %}
-            </div>
-            <div class='six columns  slideup'>
+          </div>      
+         
+            <div class='col-mid-6'>
 
-                <h4 class='strapline'> <a href="/"> <strong> Shapes</strong>   </a></h4>
+                <h4 > <a href="/"> EvoDrawings </a></h4>
 
             </div>
 
 
         </div>
+        
 
         <hr class="large" />
 
     </header>   <!-- header  ================ -->
 
-    <div class="three columns sidebar"><!-- Sidebar  ================ -->
-        <nav>
-
-            <div class="three columns sidebar">
-                <h4> Details </h4>
-               <ul>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Details</h3>
+        </div>
+          <div class="panel-body">
+          <div class="row">
+          <div class="col-md-4">  
+           <ul>
                    <li> <strong> Likes: </strong>  {{ individual.fitness|length   }} </li>
                    <li> <strong> Views: </strong>  {{ individual.views }} </li>
                    {% if papa %}
@@ -228,7 +243,7 @@ function AsImage()
 
                    <li> <strong>Gen Operator: </strong>{{ individual.crossover|default:'None' }} </li>
                    <li> <strong>  Chromosome: </strong> </li>
-		</ul>
+        </ul>
                    <li>  <strong>{{  individual.chromosome|slice:"0:1"  }}</strong>No. Figuras</li>
                    <li>  <strong>{{  individual.chromosome|slice:"1:2"  }}</strong>Tama&ntildeo Figuras</li>
                    <li>  <strong>{{  individual.chromosome|slice:"2:3"  }}</strong>Triangulo</li>
@@ -240,72 +255,78 @@ function AsImage()
                    <li>  <strong>{{  individual.chromosome|slice:"8:9"  }}</strong>Restringido al canvas</li>
                    <li>  <strong>{{  individual.chromosome|slice:"9:10" }}</strong>Rotar Figura</li>
                    <li>  <strong>{{  individual.chromosome|slice:"10:11"}}</strong>Posicion Inicial</li>
-		     <li>  <strong>{{  individual.chromosome|slice:"11:12"}}</strong>Contorno o Relleno</li>
-		     <li>  <strong>{{  individual.chromosome|slice:"12:13"}}</strong>Linea</li>
-		     <li>  <strong>{{  individual.chromosome|slice:"13:14"}}</strong>Tipo de Linea</li>
-		     <li>  <strong>{{  individual.chromosome|slice:"14:15"}}</strong>Fondo</li>
+             <li>  <strong>{{  individual.chromosome|slice:"11:12"}}</strong>Contorno o Relleno</li>
+             <li>  <strong>{{  individual.chromosome|slice:"12:13"}}</strong>Linea</li>
+             <li>  <strong>{{  individual.chromosome|slice:"13:14"}}</strong>Tipo de Linea</li>
+             <li>  <strong>{{  individual.chromosome|slice:"14:15"}}</strong>Fondo</li>
+         </div >
+         <div >
+                    <div>
+                        <h4>{{ individual.id }}</h4>
+                        <h4> Chromosome:    {{individual.chromosome}}</h4><button onclick="AsImage()">To Image</button>
+                         <div id="asImage">
 
+                        </div>
+
+                        <canvas id="slot" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
+                        <!-- <div class="cover boxcaption">
+                            <span class="paint_name">                </span>
+                            <a class="fitness" title="show ratings"> </a>
+                        </div> -->
+
+                    </div>
+
+
+                    {% if papa %}
+                        <div >
+                            <a href="/individual/{{individual.papa|slice:"15:" }}">    <h4>Parent:{{individual.papa }}</h4></a>
+
+                <canvas id="papa" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
+                     </div>
+                    {% endif %}
+                    {% if mama %}
+                    <div >
+                     <a href="/individual/{{individual.mama|slice:"15:" }}">   <h4>Parent: {{individual.mama }}</h4></a>
+
+                        <canvas id="mama" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
+
+                    </div>
+
+                    {% endif %}
+
+            </div>            
+       
+         </div>
+  
+          
+          </div>
+          </div>
+
+    <!-- <div class="three columns sidebar"> --><!-- Sidebar  ================ -->
+        <!-- <nav>
+
+            <div class="three columns sidebar">
+                <h4> Details </h4>
+              
 
 
 
            </div>
 
-        </nav>
-        &nbsp;
-    </div><!-- Sidebar  ================ -->
-
-
-
-
-    <div class="thirteen columns content">
-
-
-
-
-    <div class='thirteen columns grid-item slideup'>
-		<h4>{{ individual.id }}</h4>
-		<h4> Chromosome:	{{individual.chromosome}}</h4><button onclick="AsImage()">To Image</button>
-		 <div id="asImage">
-
-	        </div>
-
-        <canvas id="slot" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
-        <div class="cover boxcaption">
-            <span class="paint_name">                </span>
-            <a class="fitness" title="show ratings"> </a>
-        </div>
-
-    </div>
-
-
-    {% if papa %}
-        <div class='six columns grid-item slideup'>
- 			<a href="/individual/{{individual.papa|slice:"15:" }}">    <h4>Parent:{{individual.papa }}</h4></a>
-
-<canvas id="papa" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
-     </div>
-    {% endif %}
-    {% if mama %}
-    <div class='six columns grid-item slideup'>
-	 <a href="/individual/{{individual.mama|slice:"15:" }}">   <h4>Parent: {{individual.mama }}</h4></a>
-
-        <canvas id="mama" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
-
-    </div>
-
-    {% endif %}
+        </nav> -->
+        <!-- &nbsp;
+    </div> --><!-- Sidebar  ================ -->
 
 
 
 
 
-</div>
 
 </div><!-- container -->
 
 
 
-</div>
+<!-- </div> -->
 
 <!-- JS
     ==================================================
