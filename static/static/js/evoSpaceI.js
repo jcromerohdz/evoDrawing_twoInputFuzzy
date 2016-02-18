@@ -475,7 +475,7 @@ $(document).ready(function () {
 
              $.ajax(
                  {
-                     url: "/get_leader/",
+                     url: "/get_leaders/",
                      type: "GET",
                      contentType: "application/json",
                      dataType: "json",
