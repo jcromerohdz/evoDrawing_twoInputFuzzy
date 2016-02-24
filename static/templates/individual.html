@@ -105,12 +105,12 @@ function AsImage()
                     var chrome = pjs.getChromosome();
                     chrome.length = 0;
                     Array.prototype.push.apply(chrome, individual.chromosome);
-              pjs.setup();//Se resetea el canvas
+          pjs.setup();//Se resetea el canvas
                     pjs.draw();
                     bound = true;
 
 
-              //AS IMAGE
+          //AS IMAGE
                     //var canvas = document.getElementById("slot");
                     //var img    = canvas.toDataURL("image/png");
                     //$('#asImage').append('<img src="'+img+'"/>')
@@ -136,7 +136,7 @@ function AsImage()
                 chrome.length = 0;
                 var mama = {{mama.chromosome|safe}};
                 Array.prototype.push.apply(chrome, mama);
-          pjs.setup();//Se resetea el canvas
+      pjs.setup();//Se resetea el canvas
                 pjs.draw();
                 bound = true; }
             if(!bound) setTimeout(bindJavascript, 250);
@@ -229,7 +229,7 @@ function AsImage()
         </div>
           <div class="panel-body">
           <div class="row">
-          <div class="col-md-4">  
+          <div class="col-md-3">  
            <ul>
                    <li> <strong> Likes: </strong>  {{ individual.fitness|length   }} </li>
                    <li> <strong> Views: </strong>  {{ individual.views }} </li>
@@ -260,7 +260,7 @@ function AsImage()
              <li>  <strong>{{  individual.chromosome|slice:"13:14"}}</strong>Tipo de Linea</li>
              <li>  <strong>{{  individual.chromosome|slice:"14:15"}}</strong>Fondo</li>
          </div >
-         <div >
+         <div class="col-md-9">
                     <div>
                         <h4>{{ individual.id }}</h4>
                         <h4> Chromosome:    {{individual.chromosome}}</h4><button onclick="AsImage()">To Image</button>
@@ -278,14 +278,14 @@ function AsImage()
 
 
                     {% if papa %}
-                        <div >
+                        <div class="col-md-6">
                             <a href="/individual/{{individual.papa|slice:"15:" }}">    <h4>Parent:{{individual.papa }}</h4></a>
 
                 <canvas id="papa" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
-                     </div>
+                     </div class="col-md-6">
                     {% endif %}
                     {% if mama %}
-                    <div >
+                    <div class="col-md-6">
                      <a href="/individual/{{individual.mama|slice:"15:" }}">   <h4>Parent: {{individual.mama }}</h4></a>
 
                         <canvas id="mama" data-processing-sources="https://s3.amazonaws.com/evospace/prototype/figs.pde"></canvas>
